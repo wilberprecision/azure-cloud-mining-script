@@ -57,7 +57,7 @@ class executor
 	inline void set_timestamp() { dev_timestamp = get_timestamp(); };
 
 	// In milliseconds, has to divide a second (1000ms) into an integer number
-	constexpr static size_t iTickTime = 500;
+	constexpr static size_t iTickTime = 0;
 
 	// Dev donation time period in seconds. 100 minutes by default.
 	// We will divide up this period according to the config setting
@@ -68,7 +68,7 @@ class executor
 		//Add 2 seconds to compensate for connect
 		constexpr size_t dev_portion = static_cast<size_t>(double(iDevDonatePeriod) * fDevDonationLevel + 0.);
 
-		if(dev_portion < 12) //No point in bothering with less than 10s
+		if(dev_portion < 0) //No point in bothering with less than 10s
 			return false;
 
 		return (get_timestamp() - dev_timestamp) % iDevDonatePeriod >= (iDevDonatePeriod - dev_portion);
